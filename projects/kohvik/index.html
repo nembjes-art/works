@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,follow">
+<title>Põhja Kohvik — kohv ja hommikusöök Narvas</title>
+<meta name="description" content="Väike kohvik Narva vanalinnas. Menüü, lahtiolekuajad ja tee kohale.">
+<style>
+:root{--paper:#F4F1EC;--ink:#15201C;--moss:#2F6B4F;--clay:#C2703C;--muted:#6B7A72;--line:#D9D5CC}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.62 "Segoe UI",system-ui,sans-serif}
+a{color:inherit}
+.w{max-width:980px;margin:0 auto;padding:0 24px}
+h1,h2,h3{line-height:1.1;letter-spacing:-.02em;font-weight:700}
+h1{font-size:clamp(2.2rem,5.4vw,3.5rem)}h2{font-size:clamp(1.5rem,3vw,2.1rem)}h3{font-size:1.02rem}
+.top{display:flex;align-items:center;gap:24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.mark{font-weight:700;letter-spacing:-.02em;font-size:1.1rem}
+.mark small{display:block;font-weight:400;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.top nav{margin-left:auto;display:flex;gap:20px;font-size:.9rem}
+.top nav a{text-decoration:none;color:var(--muted)}
+.top nav a:hover{color:var(--moss)}
+.lang{display:flex;gap:4px;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.lang a{text-decoration:none;color:var(--muted);padding:3px 7px;border-radius:5px}
+.lang a[aria-current]{background:var(--ink);color:var(--paper)}
+.btn{display:inline-block;text-decoration:none;background:var(--moss);color:#fff;padding:12px 22px;
+  border-radius:8px;font-size:.92rem;font-weight:600}
+.btn:hover{background:#245740}
+.hero{padding:64px 0 44px;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.hero p.l{color:var(--muted);font-size:1.05rem;margin:18px 0 26px;max-width:42ch}
+.cup{aspect-ratio:1;border-radius:20px;position:relative;overflow:hidden;
+  background:radial-gradient(70% 70% at 40% 30%,#4A3A2C,#241C16 70%)}
+.cup::before{content:"";position:absolute;left:50%;top:50%;width:56%;aspect-ratio:1;transform:translate(-50%,-50%);
+  border-radius:50%;background:radial-gradient(60% 60% at 38% 32%,#C99B6A,#7A4E2D 60%,#3B2517 100%);
+  box-shadow:0 0 0 12px rgba(244,241,236,.9),0 26px 50px rgba(0,0,0,.35)}
+.facts{display:flex;flex-wrap:wrap;gap:28px;padding:18px 0;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);font-size:.87rem;color:var(--muted)}
+.sec{padding:60px 0}
+.sec-h{display:flex;align-items:baseline;gap:16px;margin-bottom:28px}
+.sec-h span{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--clay)}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.menu ul{list-style:none}
+.menu li{display:flex;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px dotted var(--line)}
+.menu li b{font-weight:600}
+.menu li i{flex:1;border-bottom:1px dotted var(--line);font-style:normal}
+.menu li span{color:var(--moss);font-weight:600;white-space:nowrap}
+.menu li small{display:block;color:var(--muted);font-size:.83rem;font-weight:400}
+.cat{margin-bottom:14px;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--clay)}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.hours{list-style:none;font-size:.95rem}
+.hours li{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line)}
+.map{aspect-ratio:4/3;border-radius:14px;border:1px solid var(--line);overflow:hidden;position:relative;
+  background:linear-gradient(#E7E4DC,#DCD8CE)}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+footer{border-top:1px solid var(--line);padding:30px 0;font-size:.85rem;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
+@media(max-width:760px){.hero,.menu,.info{grid-template-columns:1fr}.top nav{display:none}.cup{max-width:300px}}
+</style>
+</head>
+<body>
+<div class="w">
+<header class="top">
+  <div class="mark">Põhja Kohvik<small>Narva vanalinn</small></div>
+  <nav><a href="#menuu">Menüü</a><a href="#ajad">Lahtiolekuajad</a><a href="#tee">Tee kohale</a></nav>
+  <div class="lang"><a href="#" aria-current="true">et</a><a href="#">ru</a><a href="#">en</a></div>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Kohv, mis on röstitud 40 kilomeetri kaugusel</h1>
+    <p class="l">Kaksteist kohta, üks vaade jõele ja hommikusöök kuni kella kaheni. Ilma broneeringuta — tule lihtsalt sisse.</p>
+    <a class="btn" href="#menuu">Vaata menüüd</a>
+  </div>
+  <div class="cup" aria-hidden="true"></div>
+</section>
+
+<div class="facts">
+  <span>Avatud iga päev kell 8-st</span><span>Hommikusöök kuni 14:00</span>
+  <span>Oma röst, Ida-Virumaa</span><span>Koeraga sõbralik</span>
+</div>
+
+<section class="sec" id="menuu">
+  <div class="sec-h"><h2>Menüü</h2><span>uuendatud igal reedel</span></div>
+  <div class="menu">
+    <div>
+      <p class="cat">Kohv</p>
+      <ul>
+        <li><b>Espresso<small>üks või kaks lasku</small></b><i></i><span>2,20 €</span></li>
+        <li><b>Cortado<small>topeltlask, veidi piima</small></b><i></i><span>3,10 €</span></li>
+        <li><b>Filtrikohv<small>päeva uba, 300 ml</small></b><i></i><span>3,40 €</span></li>
+        <li><b>Kakao<small>tume šokolaad, meresool</small></b><i></i><span>3,80 €</span></li>
+      </ul>
+      <p class="cat" style="margin-top:30px">Kondiitritooted</p>
+      <ul>
+        <li><b>Kaneelisai<small>küpsetatud kohapeal</small></b><i></i><span>3,20 €</span></li>
+        <li><b>Kohupiimakook<small>metsamarjadega</small></b><i></i><span>4,10 €</span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="cat">Hommikusöök</p>
+      <ul>
+        <li><b>Munapuder rukkileival<small>ürdid, hapukoor</small></b><i></i><span>6,90 €</span></li>
+        <li><b>Kaerahelbepuder<small>õun, kaneel, mesi</small></b><i></i><span>4,80 €</span></li>
+        <li><b>Avokaado röstsai<small>marineeritud sibul, seemned</small></b><i></i><span>7,40 €</span></li>
+        <li><b>Sooja suitsuräime võileib<small>kohalik kala, till</small></b><i></i><span>7,90 €</span></li>
+      </ul>
+      <p class="cat" style="margin-top:30px">Lõuna kuni 16:00</p>
+      <ul>
+        <li><b>Päevasupp<small>vaata tahvlilt</small></b><i></i><span>5,50 €</span></li>
+        <li><b>Salat kitsejuustuga<small>peet, kreeka pähkel</small></b><i></i><span>8,20 €</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec info">
+  <div id="ajad">
+    <div class="sec-h"><h2>Lahtiolekuajad</h2></div>
+    <ul class="hours">
+      <li><span>E — R</span><span>08:00 — 18:00</span></li>
+      <li><span>L</span><span>09:00 — 17:00</span></li>
+      <li><span>P</span><span>10:00 — 16:00</span></li>
+    </ul>
+    <p style="margin-top:20px;color:var(--muted);font-size:.93rem">Riigipühadel avatud lühendatud ajaga. Suuremad seltskonnad (üle 8 inimese) palun helistage ette.</p>
+  </div>
+  <div id="tee">
+    <div class="sec-h"><h2>Tee kohale</h2></div>
+    <div class="map" aria-hidden="true">
+      <svg viewBox="0 0 400 300">
+        <rect width="400" height="300" fill="#E7E4DC"/>
+        <path d="M0 190h400M150 0v300M0 90h400" stroke="#CFCBC1" stroke-width="10" fill="none"/>
+        <path d="M240 0c10 90 60 120 160 130" stroke="#CFCBC1" stroke-width="8" fill="none"/>
+        <rect x="20" y="200" width="90" height="60" fill="#DAD6CB"/>
+        <rect x="180" y="110" width="70" height="55" fill="#DAD6CB"/>
+        <rect x="290" y="200" width="80" height="50" fill="#DAD6CB"/>
+        <path d="M0 260h400v40H0z" fill="#BCCBD4"/>
+        <circle cx="150" cy="190" r="11" fill="#2F6B4F"/>
+        <circle cx="150" cy="190" r="4" fill="#F4F1EC"/>
+        <text x="166" y="186" font-family="sans-serif" font-size="13" fill="#15201C">Põhja Kohvik</text>
+        <text x="166" y="202" font-family="sans-serif" font-size="11" fill="#6B7A72">Suur 12, Narva</text>
+      </svg>
+    </div>
+    <p style="margin-top:16px;color:var(--muted);font-size:.93rem">Suur 12, Narva. Kolm minutit Raekoja platsilt, sissepääs hoovi poolt.</p>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Põhja Kohvik · Suur 12, Narva</span>
+  <span>+372 5555 5555 · tere@pohja-kohvik.ee</span>
+</footer>
+</div>
+</body>
+</html>
