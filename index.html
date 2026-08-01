@@ -3,295 +3,326 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Работы — витрина проектов</title>
-<meta name="description" content="Живая витрина сайтов: каждый проект открывается прямо внутри страницы.">
-<meta property="og:title" content="Работы — витрина проектов">
-<meta property="og:description" content="Каждый проект открывается прямо внутри страницы.">
-<meta property="og:image" content="assets/aria.jpg">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9889;</text></svg>">
-<style>
-:root{
-  --bg:#07060d;
-  --ink:#f4f2ff;
-  --muted:#a29fc0;
-  --line:rgba(255,255,255,.10);
-  --card:rgba(255,255,255,.035);
-  --c1:#ff2e7e;   /* маджента */
-  --c2:#7c4dff;   /* фиолет */
-  --c3:#00e5ff;   /* циан */
-  --c4:#ffd93d;   /* жёлтый */
-  --r:22px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg); color:var(--ink);
-  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
-  -webkit-font-smoothing:antialiased; overflow-x:hidden;
-}
-a{color:inherit}
-img{display:block;max-width:100%}
-button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
-
-/* ---------- фон ---------- */
-.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;will-change:transform}
-.b1{width:52vw;height:52vw;background:var(--c1);top:-14vw;left:-10vw;animation:f1 22s ease-in-out infinite}
-.b2{width:46vw;height:46vw;background:var(--c2);top:18vw;right:-14vw;animation:f2 26s ease-in-out infinite}
-.b3{width:38vw;height:38vw;background:var(--c3);top:74vw;left:8vw;opacity:.35;animation:f3 30s ease-in-out infinite}
-@keyframes f1{50%{transform:translate3d(8vw,10vw,0) scale(1.15)}}
-@keyframes f2{50%{transform:translate3d(-10vw,6vw,0) scale(.9)}}
-@keyframes f3{50%{transform:translate3d(12vw,-8vw,0) scale(1.1)}}
-.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.16;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-
-.wrap{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 24px}
-
-/* ---------- шапка ---------- */
-header{padding:34px 0 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.logo{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em;font-size:19px}
-.dot{width:13px;height:13px;border-radius:50%;background:conic-gradient(from 0deg,var(--c1),var(--c4),var(--c3),var(--c2),var(--c1));animation:spin 5s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.top-links{display:flex;gap:8px;flex-wrap:wrap}
-.top-links a{font-size:14px;color:var(--muted);text-decoration:none;padding:9px 16px;border:1px solid var(--line);border-radius:100px;transition:.25s}
-.top-links a:hover{color:var(--ink);border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.05)}
-
-/* ---------- герой ---------- */
-.hero{padding:74px 0 46px}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
-  border:1px solid var(--line);border-radius:100px;padding:8px 16px;margin-bottom:26px}
-.pulse{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:pulse 2s infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
-h1{font-size:clamp(46px,9.2vw,124px);line-height:.92;letter-spacing:-.045em;font-weight:850;max-width:14ch}
-h1 em{font-style:normal;background:linear-gradient(96deg,var(--c1),var(--c4) 42%,var(--c3) 78%,var(--c2));
-  -webkit-background-clip:text;background-clip:text;color:transparent;background-size:220% 100%;animation:hue 9s ease-in-out infinite}
-@keyframes hue{50%{background-position:100% 0}}
-.lead{margin-top:26px;max-width:56ch;font-size:clamp(16px,2vw,20px);color:var(--muted)}
-.stats{display:flex;gap:34px;margin-top:38px;flex-wrap:wrap}
-.stat b{display:block;font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1}
-.stat span{font-size:13px;color:var(--muted)}
-
-/* ---------- сетка ---------- */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px;padding-bottom:90px}
-.card{position:relative;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card);
-  cursor:pointer;text-align:left;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s;display:flex;flex-direction:column}
-.card:hover{transform:translateY(-7px);border-color:rgba(255,255,255,.28)}
-.card:focus-visible{outline:2px solid var(--c3);outline-offset:3px}
-.shot{position:relative;aspect-ratio:16/10;overflow:hidden;background:#12101c}
-.shot img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
-.card:hover .shot img{transform:scale(1.055)}
-.shade{position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(7,6,13,.86));opacity:.9}
-.badge{position:absolute;top:13px;left:13px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;
-  padding:6px 11px;border-radius:100px;backdrop-filter:blur(10px);background:rgba(10,8,18,.6);border:1px solid var(--line)}
-.badge.live{color:#0a0812;background:var(--c4);border-color:transparent}
-.play{position:absolute;right:13px;bottom:13px;display:flex;align-items:center;gap:7px;font-size:13px;font-weight:650;
-  padding:9px 15px;border-radius:100px;background:rgba(244,242,255,.94);color:#0a0812;
-  opacity:0;transform:translateY(8px);transition:.3s}
-.card:hover .play{opacity:1;transform:none}
-.meta{padding:19px 20px 22px}
-.meta h3{font-size:20px;font-weight:750;letter-spacing:-.02em}
-.meta p{margin-top:7px;font-size:14px;color:var(--muted);min-height:2.6em}
-.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
-.tags span{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:100px;padding:4px 10px}
-
-/* ---------- просмотр ---------- */
-.viewer{position:fixed;inset:0;z-index:100;background:rgba(4,3,9,.92);backdrop-filter:blur(18px);
-  display:none;flex-direction:column;padding:14px}
-.viewer.open{display:flex;animation:fade .3s ease}
-@keyframes fade{from{opacity:0}}
-.vbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:4px 62px 14px 6px}
-.vtitle{font-weight:750;font-size:17px;letter-spacing:-.02em;margin-right:auto;display:flex;align-items:center;gap:11px}
-.vtitle small{font-weight:400;font-size:13px;color:var(--muted)}
-.vbtn{padding:9px 15px;border:1px solid var(--line);border-radius:100px;font-size:13px;color:var(--muted);transition:.22s;white-space:nowrap}
-.vbtn:hover{color:var(--ink);border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.06)}
-.vbtn[aria-pressed="true"]{background:var(--ink);color:#0a0812;border-color:var(--ink);font-weight:650}
-.seg{display:flex;gap:5px;border:1px solid var(--line);border-radius:100px;padding:4px}
-.seg .vbtn{border:none;padding:7px 13px}
-.stage{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;overflow:auto}
-.frame{width:100%;height:100%;max-width:100%;background:#fff;border-radius:16px;overflow:hidden;
-  box-shadow:0 34px 90px rgba(0,0,0,.6);transition:max-width .4s cubic-bezier(.2,.8,.2,1);position:relative}
-.frame iframe{width:100%;height:100%;border:0;display:block}
-.frame img{width:100%;height:auto}
-.frame.shotmode{background:#0d0b16;overflow:auto;align-self:stretch}
-.note{position:absolute;left:0;right:0;bottom:0;padding:13px 18px;font-size:13px;color:#e8e6f5;
-  background:linear-gradient(transparent,rgba(6,5,12,.96));pointer-events:none}
-.close{position:fixed;top:16px;right:18px;z-index:110;width:42px;height:42px;border-radius:50%;
-  border:1px solid var(--line);background:rgba(12,10,20,.8);font-size:20px;line-height:1}
-.close:hover{background:rgba(255,255,255,.12)}
-.nav{position:fixed;top:50%;transform:translateY(-50%);z-index:105;width:46px;height:46px;border-radius:50%;
-  border:1px solid var(--line);background:rgba(12,10,20,.75);font-size:20px;transition:.22s}
-.nav:hover{background:rgba(255,255,255,.14)}
-.nav.prev{left:14px}.nav.next{right:14px}
-
-footer{border-top:1px solid var(--line);padding:40px 0 60px;color:var(--muted);font-size:14px;
-  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-
-@media(max-width:640px){
-  .grid{grid-template-columns:1fr;gap:18px}
-  .hero{padding:52px 0 34px}
-  .stats{gap:22px}
-  .nav{display:none}
-  .vtitle{font-size:15px;width:100%;margin-bottom:4px}
-}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
+<title>Работы — сайты и приложения на заказ</title>
+<meta name="description" content="Портфолио разработчика и дизайнера цифровых продуктов: сайты, веб- и мобильные приложения. Каждый проект открывается живьём прямо на странице.">
+<meta name="theme-color" content="#060506">
+<meta property="og:title" content="Работы — сайты и приложения на заказ">
+<meta property="og:description" content="Каждый проект открывается живьём прямо на странице.">
+<meta property="og:image" content="assets/kiri.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='34' fill='none' stroke='%23ff7a2f' stroke-width='8'/><circle cx='50' cy='50' r='46' fill='none' stroke='%23ff7a2f' stroke-width='3' stroke-dasharray='6 10' opacity='.7'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>
+/* тема выставляется до отрисовки, чтобы не было вспышки */
+(function(){try{
+  var t=localStorage.getItem('works-theme');
+  if(!t)t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  document.documentElement.setAttribute('data-theme',t);
+  var l=localStorage.getItem('works-lang');
+  if(!l){var n=(navigator.language||'ru').slice(0,2).toLowerCase();l=n==='et'?'et':(n==='ru'?'ru':'en');}
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
 </head>
 <body>
 
-<div class="bg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
-<div class="grain"></div>
-
-<div class="wrap">
-  <header>
-    <div class="logo"><span class="dot"></span> Работы</div>
-    <nav class="top-links">
-      <a href="#works">Проекты</a>
-      <a href="https://github.com/nembjes-art" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:kamarartjom@gmail.com">Написать</a>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <div class="eyebrow"><span class="pulse"></span> Живые демо — открываются прямо здесь</div>
-    <h1>Сайты, которые<br><em>можно потрогать</em></h1>
-    <p class="lead">Не картинки и не мокапы: каждый проект запускается внутри этой страницы — можно скроллить, кликать и смотреть, как он ведёт себя на телефоне.</p>
-    <div class="stats">
-      <div class="stat"><b id="s-total">0</b><span>проектов</span></div>
-      <div class="stat"><b id="s-live">0</b><span>живых демо</span></div>
-      <div class="stat"><b>100%</b><span>открываются прямо здесь</span></div>
-    </div>
-  </section>
-
-  <section id="works">
-    <div class="grid" id="grid"></div>
-  </section>
-
-  <footer>
-    <span>© <span id="year"></span> — все проекты собраны вручную</span>
-    <span>Витрина работает на GitHub Pages</span>
-  </footer>
+<!-- ───────────────────────── фоновые слои ───────────────────────── -->
+<div class="bg" aria-hidden="true">
+  <div class="bg-wash"></div>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+  <canvas id="dust"></canvas>
+  <div class="bg-vignette"></div>
 </div>
+<div class="grain" aria-hidden="true"></div>
 
-<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Просмотр проекта">
-  <button class="close" id="vClose" aria-label="Закрыть">✕</button>
-  <button class="nav prev" id="vPrev" aria-label="Предыдущий">‹</button>
-  <button class="nav next" id="vNext" aria-label="Следующий">›</button>
-  <div class="vbar">
-    <div class="vtitle"><span id="vName"></span><small id="vDesc"></small></div>
-    <div class="seg" id="vSizes">
-      <button class="vbtn" data-w="0" aria-pressed="true">🖥 Десктоп</button>
-      <button class="vbtn" data-w="834">📓 Планшет</button>
-      <button class="vbtn" data-w="390">📱 Телефон</button>
-    </div>
-    <a class="vbtn" id="vOpen" target="_blank" rel="noopener">Открыть в новой вкладке ↗</a>
+<a class="skip" href="#projects" data-t="skip">К проектам</a>
+
+<!-- ───────────────────────── навигация ───────────────────────── -->
+<header class="nav" id="nav">
+  <a class="brand" href="#home">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">Artjom<span class="brand-dim">.works</span></span>
+  </a>
+
+  <nav class="nav-links" id="navLinks" aria-label="Menu">
+    <a href="#home"     data-t="navHome">Главная</a>
+    <a href="#projects" data-t="navProjects">Работы</a>
+    <a href="#services" data-t="navServices">Услуги</a>
+    <a href="#about"    data-t="navAbout">Обо мне</a>
+    <a href="#contact"  data-t="navContact">Контакты</a>
+  </nav>
+
+  <div class="lang" id="lang">
+    <button class="lang-btn" id="langBtn" type="button"
+            aria-haspopup="listbox" aria-expanded="false"
+            data-t-aria="langLabel" aria-label="Язык интерфейса">
+      <svg class="ico-globe" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>
+        <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z"/>
+      </svg>
+      <span class="lang-cur" id="langCur">RU</span>
+      <svg class="ico-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg>
+    </button>
+
+    <ul class="lang-menu" id="langMenu" role="listbox" data-t-aria="langLabel" aria-label="Язык интерфейса">
+      <li><button type="button" role="option" data-l="ru" aria-selected="true"><b>Русский</b><span>RU</span></button></li>
+      <li><button type="button" role="option" data-l="en" aria-selected="false"><b>English</b><span>EN</span></button></li>
+      <li><button type="button" role="option" data-l="et" aria-selected="false"><b>Eesti</b><span>ET</span></button></li>
+    </ul>
   </div>
-  <div class="stage"><div class="frame" id="vFrame"></div></div>
+
+  <button class="theme" id="theme" data-t-aria="themeLabel" aria-label="Светлая или тёмная тема" aria-pressed="false">
+    <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.4 5.4l1.9 1.9M16.7 16.7l1.9 1.9M18.6 5.4l-1.9 1.9M7.3 16.7l-1.9 1.9"/></svg>
+    <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.4 8.4 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2z"/></svg>
+  </button>
+
+  <a class="nav-cta" href="#contact">
+    <span class="dot-live" aria-hidden="true"></span><span data-t="navAvail">Свободен для проекта</span>
+  </a>
+
+  <button class="nav-burger" id="burger" data-t-aria="menuLabel" aria-label="Меню" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<main>
+<!-- ═════════════════════════ HERO ═════════════════════════ -->
+<section class="hero" id="home">
+
+  <span class="rail rail-l mono" data-t="railL" aria-hidden="true">Избранные работы — 2026</span>
+  <span class="rail rail-r mono" data-t="railR" aria-hidden="true">Сделано и запущено</span>
+
+  <div class="hero-grid">
+
+    <!-- левая колонка -->
+    <aside class="side side-l">
+      <div class="side-row"><span class="mono" data-t="hType">Тип</span><b data-f="type">Website</b></div>
+      <div class="side-row"><span class="mono" data-t="hYear">Год</span><b data-f="year">2026</b></div>
+      <div class="side-row"><span class="mono" data-t="hRole">Роль</span><b data-f="role">Дизайн и разработка</b></div>
+      <p class="side-note" data-f="tagline"></p>
+      <div class="side-index">
+        <span class="idx-cur" data-f="num">01</span><span class="idx-sep">/</span><span class="idx-all" data-f="total">04</span>
+      </div>
+    </aside>
+
+    <!-- центр: круглый арт-объект -->
+    <div class="stage" id="stage">
+      <div class="rings" aria-hidden="true">
+        <svg viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <radialGradient id="ringFade" cx="50%" cy="50%" r="50%">
+              <stop offset="55%" stop-color="currentColor" stop-opacity="0"/>
+              <stop offset="72%" stop-color="currentColor" stop-opacity=".55"/>
+              <stop offset="100%" stop-color="currentColor" stop-opacity=".08"/>
+            </radialGradient>
+          </defs>
+          <g class="ring-slow">
+            <circle class="r-thin" cx="500" cy="500" r="404"/>
+            <circle class="r-dash" cx="500" cy="500" r="404"/>
+            <g class="ticks" id="ticks"></g>
+          </g>
+          <g class="ring-rev">
+            <circle class="r-thin" cx="500" cy="500" r="452"/>
+            <circle class="r-dot" cx="500" cy="48" r="5"/>
+            <path class="r-arc" d="M 500 34 A 466 466 0 0 1 830 170"/>
+          </g>
+          <circle class="r-hair" cx="500" cy="500" r="372"/>
+          <line class="r-guide" x1="500" y1="96" x2="500" y2="128"/>
+          <line class="r-guide" x1="500" y1="872" x2="500" y2="904"/>
+          <g class="cross">
+            <line x1="86" y1="500" x2="126" y2="500"/><line x1="106" y1="480" x2="106" y2="520"/>
+            <line x1="874" y1="500" x2="914" y2="500"/><line x1="894" y1="480" x2="894" y2="520"/>
+          </g>
+        </svg>
+        <span class="ring-tag t1 mono">Orbit / 01</span>
+        <span class="ring-tag t2 mono">59.3797° N</span>
+        <span class="ring-tag t3 mono">Narva · EE</span>
+      </div>
+
+      <span class="beam" aria-hidden="true"></span>
+
+      <div class="orb" id="orb">
+        <div class="orb-media" id="orbMedia"><!-- слои со скриншотами --></div>
+        <div class="orb-scrim" aria-hidden="true"></div>
+        <div class="orb-rim" aria-hidden="true"></div>
+        <div class="orb-gloss" aria-hidden="true"></div>
+      </div>
+
+      <div class="wordmark" id="wordmark" aria-hidden="true">KIRI</div>
+
+      <button class="arrow prev" id="prev" data-t-aria="hPrev" aria-label="Предыдущий проект">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 6l-6 6 6 6M7 12h11"/></svg>
+      </button>
+      <button class="arrow next" id="next" data-t-aria="hNext" aria-label="Следующий проект">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 6l6 6-6 6M17 12H6"/></svg>
+      </button>
+    </div>
+
+    <!-- правая колонка -->
+    <aside class="side side-r">
+      <div class="status" data-f="status"><span class="dot-live"></span>Live</div>
+      <h1 class="p-title" data-f="title">Dreams of Eternal Aria</h1>
+      <p class="p-cat mono" data-f="category"></p>
+      <p class="p-desc" data-f="description"></p>
+      <ul class="p-tech" data-f="tech"></ul>
+      <div class="p-actions">
+        <button class="btn btn-primary" id="btnView">
+          <span data-t="hView">Смотреть проект</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <button class="btn btn-ghost" id="btnCase" data-t="hCase">Подробнее</button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- навигация по проектам + преимущества -->
+  <div class="hero-foot">
+    <div class="scroll-hint mono" aria-hidden="true">Scroll<span class="sh-line"></span></div>
+    <div class="ticker" id="ticker" role="tablist" data-t-aria="hTicker" aria-label="Проекты"></div>
+
+    <ul class="perks">
+      <li>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 9.5h18M6.5 15h11"/><circle cx="7" cy="6.4" r=".9" fill="currentColor" stroke="none"/></svg>
+        <div><b data-t="perk1">Сайты</b><span data-t="perk1s">Лендинги и сайты компаний</span></div>
+      </li>
+      <li>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 9.5 5.5 12 8 14.5M16 9.5 18.5 12 16 14.5M13 8.5l-2 7"/></svg>
+        <div><b data-t="perk2">Веб-приложения</b><span data-t="perk2s">Личные кабинеты и панели</span></div>
+      </li>
+      <li>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.7 5.4h2.6"/><path d="M20 8a7 7 0 0 1 0 8" opacity=".7"/></svg>
+        <div><b data-t="perk3">Мобильные приложения</b><span data-t="perk3s">Приложения и PWA</span></div>
+      </li>
+      <li>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="4.5"/><path d="M12.5 12.5h7v7h-7z"/><path d="M12 12 8 8"/></svg>
+        <div><b data-t="perk4">UI/UX и разработка</b><span data-t="perk4s">От макета до продакшена</span></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═════════════════════════ SERVICES ═════════════════════════ -->
+<section class="section services" id="services">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-num mono" data-t="sSrvNum">01 — Услуги</span>
+      <h2 class="s-title"><span data-t="sSrvTitle">Что я делаю</span><br><em data-t="sSrvEm">от идеи до релиза</em></h2>
+      <p class="s-lead" data-t="sSrvLead"></p>
+    </div>
+
+    <ol class="srv" id="srv"></ol>
+  </div>
+</section>
+
+<!-- ═════════════════════════ PROJECTS ═════════════════════════ -->
+<section class="section projects" id="projects">
+  <div class="wrap">
+    <div class="s-head s-head-row">
+      <div>
+        <span class="s-num mono" data-t="sPrjNum">02 — Избранные работы</span>
+        <h2 class="s-title"><span data-t="sPrjTitle">Работы,</span><br><em data-t="sPrjEm">которые можно потрогать</em></h2>
+      </div>
+      <p class="s-lead" data-t="sPrjLead"></p>
+    </div>
+
+    <div class="filters" id="filters" role="group" aria-label="Filter"></div>
+    <div class="bento" id="bento"></div>
+    <p class="empty mono" id="empty" data-t="cEmpty" hidden></p>
+  </div>
+</section>
+
+<!-- ═════════════════════════ PROCESS ═════════════════════════ -->
+<section class="section process" id="process">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-num mono" data-t="sPrcNum">03 — Процесс</span>
+      <h2 class="s-title" data-t="sPrcTitle">Как идёт работа</h2>
+    </div>
+
+    <ol class="steps" id="steps"></ol>
+  </div>
+</section>
+
+<!-- ═════════════════════════ ABOUT ═════════════════════════ -->
+<section class="section about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="s-num mono" data-t="sAbtNum">04 — Обо мне</span>
+      <h2 class="s-title"><span data-t="sAbtTitle">Разработчик</span><br><em data-t="sAbtEm">цифровых продуктов</em></h2>
+    </div>
+    <div class="about-body">
+      <p data-t="ab1"></p>
+      <p data-t="ab2"></p>
+      <p data-t="ab3"></p>
+      <ul class="about-stats">
+        <li><b data-f="statProjects">4</b><span data-t="abs1">проекта в витрине</span></li>
+        <li><b>100%</b><span data-t="abs2">живых демо</span></li>
+        <li><b>3</b><span data-t="abs3">языка интерфейса</span></li>
+        <li><b>0</b><span data-t="abs4">шаблонов и конструкторов</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ CONTACT ═════════════════════════ -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <span class="s-num mono" data-t="sCntNum">05 — Контакты</span>
+    <h2 class="cta-title" data-t-html="sCntTitle">Расскажите,<br>что нужно сделать</h2>
+    <p class="cta-lead" data-t="sCntLead"></p>
+
+    <div class="cta-row">
+      <a class="btn btn-primary btn-lg" href="mailto:kamarartjom@gmail.com?subject=%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82">
+        <span data-t="cBtn">Написать письмо</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="mail-lg" href="mailto:kamarartjom@gmail.com">kamarartjom@gmail.com</a>
+    </div>
+
+    <ul class="socials">
+      <li><a href="https://github.com/nembjes-art" target="_blank" rel="noopener"><span data-t="soc1">GitHub</span><span class="mono">nembjes-art</span></a></li>
+      <li><a href="mailto:kamarartjom@gmail.com"><span data-t="soc2">Почта</span><span class="mono">kamarartjom@gmail.com</span></a></li>
+      <li><a href="#projects"><span data-t="soc3">Живые демо</span><span class="mono" data-t="soc3s">открываются на странице</span></a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>© <span id="year"></span> <span data-t="fCopy">— все проекты собраны вручную</span></span>
+    <span class="mono" data-t="fHost">Витрина работает на GitHub Pages</span>
+  </div>
+</footer>
+
+<!-- ═════════════════════════ ПРОСМОТРЩИК ═════════════════════════ -->
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" data-t-aria="vDialog" aria-label="Просмотр проекта">
+  <div class="vbar">
+    <div class="vtitle"><span id="vName"></span><small id="vDesc" class="mono"></small></div>
+    <div class="seg" id="vSizes">
+      <button class="vbtn" data-w="0" aria-pressed="true" data-t="vDesktop">Десктоп</button>
+      <button class="vbtn" data-w="834" data-t="vTablet">Планшет</button>
+      <button class="vbtn" data-w="390" data-t="vPhone">Телефон</button>
+    </div>
+    <a class="vbtn vopen" id="vOpen" target="_blank" rel="noopener" data-t="vOpen">Открыть в новой вкладке ↗</a>
+    <button class="vbtn vclose" id="vClose" data-t="vClose">Закрыть</button>
+  </div>
+  <div class="stage-v">
+    <button class="vnav prev" id="vPrev" data-t-aria="vPrev" aria-label="Предыдущий">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <div class="frame" id="vFrame"></div>
+    <button class="vnav next" id="vNext" data-t-aria="vNext" aria-label="Следующий">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
 </div>
 
-<script>
-const PROJECTS = [
-  {
-    slug:'aria', title:'Dreams of Eternal Aria', live:true,
-    badge:'Лендинг игры',
-    desc:'Промо-сайт open-world фэнтези-RPG: кинематографичный скролл, нарисованные вручную сцены, разделы мира, фич, скачивания и регистрации.',
-    tags:['Скролл-анимация','Аниме-арт','Лендинг','EN']
-  },
-  {
-    slug:'renew', title:'Renew', live:true,
-    badge:'Косметология',
-    desc:'Сайт косметологической клиники в Нарве: услуги, цены, запись. Мягкая тёплая типографика.',
-    tags:['Услуги','Запись','RU']
-  },
-  {
-    slug:'kohvik', title:'Põhja Kohvik', live:true,
-    badge:'Кофейня',
-    desc:'Кофейня и завтраки в Нарве. Меню, часы работы, атмосферные фото-блоки. Эстонский язык.',
-    tags:['HoReCa','Меню','ET']
-  }
-];
-
-
-const $ = s => document.querySelector(s);
-const grid = $('#grid');
-let current = 0, list = PROJECTS;
-
-$('#year').textContent = new Date().getFullYear();
-
-/* счётчики */
-(function count(){
-  const anim = (el, to) => {
-    let n = 0; const step = Math.max(1, Math.ceil(to/24));
-    const t = setInterval(()=>{ n=Math.min(to,n+step); el.textContent=n; if(n>=to) clearInterval(t); }, 45);
-  };
-  anim($('#s-total'), PROJECTS.length);
-  anim($('#s-live'), PROJECTS.filter(p=>p.live).length);
-})();
-
-
-/* карточки */
-PROJECTS.forEach((p,i)=>{
-  const c = document.createElement('button');
-  c.className='card'; c.type='button';
-  c.innerHTML = `
-    <div class="shot">
-      <img src="assets/${p.slug}.jpg" alt="${p.title}" loading="lazy">
-      <div class="shade"></div>
-      <span class="badge ${p.live?'live':''}">${p.live?'Живое демо':p.badge}</span>
-      <span class="play">${p.live?'Открыть демо':'Посмотреть'} →</span>
-    </div>
-    <div class="meta">
-      <h3>${p.title}</h3>
-      <p>${p.desc}</p>
-      <div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>
-    </div>`;
-  c.onclick = ()=>open(i);
-  grid.appendChild(c);
-});
-
-/* просмотр */
-const viewer=$('#viewer'), vFrame=$('#vFrame'), vName=$('#vName'), vDesc=$('#vDesc'), vOpen=$('#vOpen');
-let width = 0;
-
-function render(){
-  const p = PROJECTS[current];
-  vName.textContent = p.title;
-  vDesc.textContent = p.live ? '· живое демо' : '· интерфейс приложения (бэкенд работает локально)';
-  vOpen.href = p.live ? `projects/${p.slug}/index.html` : `assets/${p.slug}.jpg`;
-  vFrame.classList.toggle('shotmode', !p.live);
-  vFrame.innerHTML = p.live
-    ? `<iframe src="projects/${p.slug}/index.html" title="${p.title}" loading="lazy"></iframe>`
-    : `<img src="assets/${p.slug}.jpg" alt="${p.title}"><div class="note">Это скриншот реального интерфейса — само приложение работает на компьютере (Node.js / Python), поэтому на статичном хостинге не запускается.</div>`;
-  applyWidth();
-}
-function applyWidth(){
-  vFrame.style.maxWidth = width ? width+'px' : '100%';
-}
-function open(i){
-  current = i; viewer.classList.add('open'); document.body.style.overflow='hidden'; render();
-}
-function close(){
-  viewer.classList.remove('open'); vFrame.innerHTML=''; document.body.style.overflow='';
-}
-function move(d){
-  current = (current + d + PROJECTS.length) % PROJECTS.length; render();
-}
-
-$('#vClose').onclick = close;
-$('#vPrev').onclick = ()=>move(-1);
-$('#vNext').onclick = ()=>move(1);
-$('#vSizes').onclick = e=>{
-  const b = e.target.closest('button'); if(!b) return;
-  [...e.currentTarget.children].forEach(c=>c.setAttribute('aria-pressed','false'));
-  b.setAttribute('aria-pressed','true');
-  width = +b.dataset.w; applyWidth();
-};
-viewer.addEventListener('click', e=>{ if(e.target===viewer) close(); });
-document.addEventListener('keydown', e=>{
-  if(!viewer.classList.contains('open')) return;
-  if(e.key==='Escape') close();
-  if(e.key==='ArrowLeft') move(-1);
-  if(e.key==='ArrowRight') move(1);
-});
-</script>
+<script src="data/i18n.js"></script>
+<script src="data/projects.js"></script>
+<script src="assets/app.js"></script>
 </body>
 </html>

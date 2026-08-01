@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+
+    <!--
+      The head below is authored in Russian, the site's default language, so a
+      crawler that does not execute JavaScript reads a complete and correct
+      document. When a visitor switches language, useDocumentMetadata() rewrites
+      every one of these tags — see src/hooks/useDocumentMetadata.ts. Keep the
+      two in step: a tag added here needs a line there, and vice versa.
+
+      ⚠ https://nembjes-art.github.io/works/projects/kiri is a PLACEHOLDER origin, and /og-image.jpg is a
+        frame of the real Hero rather than photography. Both are listed in
+        docs/stage-6-placeholders.md and must be confirmed before launch.
+    -->
+    <title>KIRI — частные путешествия по Японии</title>
+    <meta
+      name="description"
+      content="Бутиковое ателье путешествий: камерные маршруты по Японии, собранные вручную — от первого разговора до последнего дня."
+    />
+    <link rel="canonical" href="https://nembjes-art.github.io/works/projects/kiri/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="KIRI" />
+    <meta property="og:title" content="KIRI — частные путешествия по Японии" />
+    <meta
+      property="og:description"
+      content="Бутиковое ателье путешествий: камерные маршруты по Японии, собранные вручную — от первого разговора до последнего дня."
+    />
+    <meta property="og:url" content="https://nembjes-art.github.io/works/projects/kiri/" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:image" content="https://nembjes-art.github.io/works/projects/kiri/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Сакура у ворот тории на рассвете — заставка KIRI" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KIRI — частные путешествия по Японии" />
+    <meta
+      name="twitter:description"
+      content="Бутиковое ателье путешествий: камерные маршруты по Японии, собранные вручную — от первого разговора до последнего дня."
+    />
+    <meta name="twitter:image" content="https://nembjes-art.github.io/works/projects/kiri/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Сакура у ворот тории на рассвете — заставка KIRI" />
+
+    <!--
+      Structured data. Deliberately minimal: every property below is either a
+      brand fact or copy the client wrote. There is no address, no telephone,
+      no rating, no review count and no award, because there is no verified
+      business behind them yet — and an invented one is worse than an absent
+      one. Kept in sync by buildStructuredData() in src/lib/seo.ts.
+    -->
+    <script type="application/ld+json" id="structured-data">
+      {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "@id": "https://nembjes-art.github.io/works/projects/kiri/#organization",
+        "name": "KIRI",
+        "alternateName": "桐",
+        "url": "https://nembjes-art.github.io/works/projects/kiri/",
+        "description": "Ателье частных путешествий по Японии. Камерные группы и индивидуальные маршруты.",
+        "email": "mailto:atelier@kiri.travel",
+        "foundingDate": "2014",
+        "inLanguage": "ru",
+        "knowsLanguage": ["ru", "en", "ja"],
+        "areaServed": { "@type": "Country", "name": "Japan" }
+      }
+    </script>
+
+    <meta name="color-scheme" content="light dark" />
+    <!--
+      Single theme-color tag, maintained by the boot script below and kept in
+      sync afterwards by applyTheme() in src/lib/theme.ts. It is deliberately
+      NOT media-scoped: media queries follow the OS, which would contradict an
+      explicit user choice of light or dark.
+      The value below is the light default for the no-JS case.
+    -->
+    <meta name="theme-color" id="theme-color" content="#F7F3EC" />
+
+    <!--
+      Boot script — runs synchronously before first paint.
+
+      It resolves *theme* and *language* onto <html> so neither flashes:
+      the theme drives every colour token, and the lang attribute drives the
+      [lang='ja'] typography overrides (font stacks, leading, tracking).
+
+      Kept dependency-free and tiny. These constants are duplicated,
+      deliberately, from src/lib/theme.ts and src/lib/i18n.ts:
+        THEME_STORAGE_KEY    = 'kiri.theme'
+        LANGUAGE_STORAGE_KEY = 'kiri.language'
+        THEME_COLOR          = { light: '#F7F3EC', dark: '#0A0E13' }
+        DEFAULT_LANGUAGE     = 'ru'
+      If either module changes, change this too.
+    -->
+    <script>
+      ;(function () {
+        var root = document.documentElement
+
+        function read(key) {
+          try {
+            return localStorage.getItem(key)
+          } catch (_) {
+            return null
+          }
+        }
+
+        /* --- Theme ------------------------------------------------------- */
+        var themeColor = { light: '#F7F3EC', dark: '#0A0E13' }
+        var resolved = 'light'
+        try {
+          var stored = read('kiri.theme')
+          var preference =
+            stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system'
+          var systemDark =
+            window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+          resolved = preference === 'system' ? (systemDark ? 'dark' : 'light') : preference
+        } catch (_) {
+          resolved = 'light'
+        }
+        root.dataset.theme = resolved
+        root.style.colorScheme = resolved
+        var meta = document.getElementById('theme-color')
+        if (meta) meta.setAttribute('content', themeColor[resolved])
+
+        /* --- Language ---------------------------------------------------- */
+        /* A valid saved choice wins; otherwise Russian. The browser/OS
+           language is never consulted. */
+        var storedLang = read('kiri.language')
+        root.lang =
+          storedLang === 'ru' || storedLang === 'en' || storedLang === 'ja' ? storedLang : 'ru'
+
+        /* A returning Japanese reader needs the full Noto families, and needs
+           them requested here rather than after React mounts — otherwise the
+           whole page sets in a fallback CJK face and reflows when they arrive.
+           Everyone else gets the ornament subset linked below and nothing more.
+           Mirrors ensureJapaneseFonts() in src/lib/fonts.ts; same id, so the
+           React side never adds a second one. */
+        if (root.lang === 'ja' && !document.getElementById('jp-fonts')) {
+          var jp = document.createElement('link')
+          jp.id = 'jp-fonts'
+          jp.rel = 'stylesheet'
+          jp.href =
+            'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap'
+          document.head.appendChild(jp)
+        }
+      })()
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+      Cormorant Garamond — editorial display serif (Latin, Latin-ext, Cyrillic, Vietnamese)
+      Inter                — UI / body sans (Latin, Latin-ext, Cyrillic, Greek)
+    -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
+    />
+    <!--
+      Noto Serif JP / Noto Sans JP — the Japanese companions.
+
+      Requested as a `text=` subset containing exactly the CJK characters this
+      page renders as *ornament* — the 桐 wordmark, the 印 seals, the ghosted
+      watermark on every plate. Asking for the whole families here cost a reader
+      of the Russian page 538 KB of Japanese typeface, in two dozen separate
+      unicode-range subsets, to draw about fifteen characters. The subset below
+      is a few kilobytes and is the same typeface.
+
+      The full families are loaded only for a page that is actually in Japanese:
+      by the boot script above for a returning Japanese reader, and by
+      ensureJapaneseFonts() when someone switches language mid-session.
+
+      ⚠ This list is ORNAMENT_GLYPHS in src/lib/fonts.ts, percent-encoded. The
+        two are the same list written twice; qa/stage7-perf.mjs fails the run if
+        the page renders a character that is not in it.
+    -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&text=%E3%80%82%E3%80%8C%E3%80%8D%E3%81%82%E3%81%8C%E3%81%8F%E3%81%93%E3%81%99%E3%81%9D%E3%81%A7%E3%81%AB%E3%81%AE%E3%81%AF%E3%82%88%E3%82%8B%E3%82%A4%E3%82%B5%E3%83%88%E4%BA%AC%E4%BA%BA%E4%BC%9D%E4%BD%93%E5%85%88%E5%86%99%E5%86%AC%E5%88%9D%E5%88%A9%E5%8C%97%E5%8D%B0%E5%95%8F%E5%A3%B0%E5%A4%8F%E5%A4%9C%E5%A5%88%E5%AD%A3%E5%AE%AE%E5%AE%BF%E5%AF%8C%E5%AF%BA%E5%B0%91%E5%B1%85%E5%BA%83%E5%BF%85%E5%BF%B5%E6%89%8B%E6%95%B7%E6%97%85%E6%97%A5%E6%98%A5%E6%99%AF%E6%9C%AC%E6%9C%B1%E6%9D%B1%E6%A1%90%E6%A5%93%E6%A5%B5%E6%AD%A6%E6%B5%B7%E6%B9%AF%E7%81%AF%E7%90%86%E7%94%A8%E7%9C%9F%E7%A2%97%E7%A7%8B%E7%A7%98%E7%A8%8B%E7%AF%80%E8%8A%B1%E8%8B%94%E8%8C%B6%E8%A6%81%E8%A8%AA%E8%AA%9E%E8%B3%AA%E8%B7%AF%E9%96%93%E9%98%AA%E9%9B%AA%E9%A3%9F%E9%A8%93%E9%B3%A5&display=swap"
+    />
+    <script type="module" crossorigin src="./assets/index-CC2qxBl7.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/i18n-UiC2eh6f.js">
+    <link rel="modulepreload" crossorigin href="./assets/motion-ByVJSGvk.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-5ZKb7DWM.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-HS9bYaPJ.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="padding: 2rem; font-family: system-ui, sans-serif">
+        Для работы сайта необходим JavaScript. / This site requires JavaScript. /
+        このサイトの利用には JavaScript が必要です。
+      </p>
+    </noscript>
+  </body>
+</html>
