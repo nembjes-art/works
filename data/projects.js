@@ -65,33 +65,33 @@ const PROJECTS = [
 
   {
     id: 'aria',
-    title: 'Dreams of Eternal Aria',
+    title: 'ARIA — The Crimson Vow',
     shortTitle: 'ARIA',
-    category: { ru:'Лендинг игры', en:'Game landing page', et:'Mängu maandumisleht' },
+    category: { ru:'Промо-сайт игры', en:'Game promo site', et:'Mängu promoleht' },
     type: 'Website',
     year: '2026',
     role: { ru:'Дизайн и разработка', en:'Design & development', et:'Disain ja arendus' },
     tagline: {
-      ru:'Кинематографичный промо-сайт с ручной графикой',
-      en:'A cinematic promo site with hand-drawn art',
-      et:'Kinematograafiline promoleht käsitsi joonistatud graafikaga'
+      ru:'Пятисекундное видео, которое отматывается скроллом',
+      en:'A five-second film you scrub with the scroll wheel',
+      et:'Viiesekundiline film, mida keritakse hiirerattaga'
     },
     description: {
-      ru:'Промо-сайт open-world фэнтези-RPG: кинематографичный скролл, нарисованные вручную сцены, разделы мира, особенностей, скачивания и регистрации. Вся анимация — на чистом CSS и SVG, без библиотек.',
-      en:'A promo site for an open-world fantasy RPG: cinematic scrolling, hand-drawn scenes, sections for the world, the features, the download and sign-up. Every animation is plain CSS and SVG, no libraries.',
-      et:'Avatud maailma fantaasia-RPG promoleht: kinematograafiline kerimine, käsitsi joonistatud stseenid, maailma, omaduste, allalaadimise ja registreerimise osad. Kogu animatsioon on puhas CSS ja SVG, ilma teekideta.'
+      ru:'Промо-сайт вымышленной open-world RPG. Пятисекундный ролик нарезан на 121 кадр и отрисовывается на canvas: позиция скролла становится номером кадра, между кадрами идёт сглаживание — камера тянется за колесом мыши и замирает там, где остановились вы. Поверх кадров живут слои параллакса: побуквенный заголовок, реплики, привязанные к отрезкам таймлайна, угольки и плёночное зерно. Ниже — параллакс-полосы регионов, карточки героев, галерея с лайтбоксом и предзаказ. Английский с переключателем на русский, отдельный набор кадров для телефонов.',
+      en:'A promo site for a fictional open-world RPG. A five-second clip is cut into 121 frames and painted on a canvas: scroll position becomes the frame index, with smoothing in between — the camera follows the wheel and stops where you stop. Parallax layers ride on top: a per-letter title, captions pinned to slices of the timeline, embers and film grain. Below it, parallax region bands, character cards, a gallery with a lightbox and a pre-order block. English with a Russian toggle, plus a separate frame set for phones.',
+      et:'Väljamõeldud avatud maailma RPG promoleht. Viiesekundiline klipp on lõigatud 121 kaadriks ja joonistatakse canvasele: kerimiskoht on kaadri number, vahepeal silumine — kaamera järgneb rattale ja peatub seal, kus sina. Peal liiguvad parallaksikihid: tähthaaval ilmuv pealkiri, ajateljega seotud tekstid, sädemed ja filmiterake. Allpool parallaksiribad, tegelaskaardid, galerii ja eeltellimuse plokk. Inglise keel vene keele lülitiga ning eraldi kaadrikomplekt telefonidele.'
     },
-    technologies: ['HTML', 'CSS', 'JavaScript', 'SVG', 'Scroll animation'],
+    technologies: ['HTML', 'CSS', 'JavaScript', 'Canvas', 'Frame sequence', 'Parallax', 'WebP', 'i18n'],
     image: 'assets/aria.jpg',
-    accent: '#E9C77E',
-    backgroundAccent: '#0B2038',
+    accent: '#E0AE5A',
+    backgroundAccent: '#1B0A0E',
     liveUrl: 'projects/aria/index.html',
     status: 'live',
-    locale: 'EN',
+    locale: 'EN / RU',
     facts: [
-      { k:{ ru:'Экранов', en:'Screens', et:'Ekraane' }, v:'9' },
+      { k:{ ru:'Кадров в секвенции', en:'Frames in sequence', et:'Kaadrit jadas' }, v:'121' },
       { k:{ ru:'Библиотек', en:'Libraries', et:'Teeke' }, v:'0' },
-      { k:{ ru:'Язык сайта', en:'Site language', et:'Lehe keel' }, v:'English' }
+      { k:{ ru:'Языка сайта', en:'Site languages', et:'Lehe keelt' }, v:'EN / RU' }
     ]
   },
 
